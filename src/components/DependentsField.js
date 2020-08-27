@@ -6,7 +6,7 @@ const DependentsField = props => {
       {[...Array(+props.dependents)].map((_,index)=>{
       return (
       <div>
-      Dependent {index}:<input type="number" key={index}  />
+      Dependent {index+1}:<input type="number" key={index}  />
       </div>
       )
     })
