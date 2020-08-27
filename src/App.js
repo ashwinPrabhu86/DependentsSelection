@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  const [items] = useState([
+    { label: "0", value: "0" },
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+    { label: "4", value: "4" },
+    { label: "5", value: "5" },
+    { label: "6", value: "6" }
+  ]);
+  const [dependents, setDependents] = useState("0");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Select Dependents: 
+      <select onChange={e => setDependents(e.currentTarget.value)}>
+      {items.map(({ label, value }) => (
+       <option key={value} value={value}>
+       {label}
+       </option>
+       ))
+      }
+    </select>
+    {[...Array(+dependents)].map((_,index)=>{
+      return (
+      <div>
+      <br />
+      Dependent {index}:<input type="number" key={index}  />
+      </div>
+      )
+    })
+    }
     </div>
   );
 }
